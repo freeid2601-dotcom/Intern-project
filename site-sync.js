@@ -1,6 +1,9 @@
 /**
- * Aken Tech Solution — Live Site Sync Engine
- * Automatically reflects Admin Panel localStorage edits on the public website in real-time.
+ * Aken Tech Solution — Live Site Sync Engine (v1.2)
+ * 1. Synchronizes Services, Products, Portfolio, Blog articles from localStorage in real-time.
+ * 2. Only renders 'active' items (hides drafts).
+ * 3. Captures public contact form inquiries and routes them directly to the Admin Inquiries Inbox.
+ * 4. Syncs company phone, email, and address settings across the public website.
  */
 
 (function () {
@@ -28,15 +31,21 @@
     }
   }
 
+  function saveStoredData(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {}
+  }
+
   function syncServices(services) {
     if (!services || !services.length) return;
+    const activeServices = services.filter(s => s.status !== 'draft');
 
-    // Target the main services grid on services.html
     const grid = document.querySelector('#publicServicesGrid') ||
                  document.querySelector('section.section .grid.md\\:grid-cols-2.lg\\:grid-cols-3');
     if (!grid) return;
 
-    grid.innerHTML = services.map(s => `
+    grid.innerHTML = activeServices.map(s => `
       <article class="card p-5 service-card">
         <div class="icon-circle mb-4 bg-blue-50 text-blue-600 flex items-center justify-center font-extrabold text-lg">
           ${escapeHtml((s.title || 'S').charAt(0))}
@@ -58,13 +67,13 @@
 
   function syncProducts(products) {
     if (!products || !products.length) return;
+    const activeProducts = products.filter(p => p.status !== 'draft');
 
-    // Target main products grid on products.html
     const grid = document.querySelector('#publicProductsGrid') ||
                  document.querySelector('section.section .grid.md\\:grid-cols-3');
     if (!grid) return;
 
-    grid.innerHTML = products.map(p => `
+    grid.innerHTML = activeProducts.map(p => `
       <article class="card overflow-hidden">
         <img
           class="feature-img !rounded-none"
@@ -92,13 +101,13 @@
 
   function syncPortfolio(portfolio) {
     if (!portfolio || !portfolio.length) return;
+    const activePortfolio = portfolio.filter(item => item.status !== 'draft');
 
-    // Target portfolio grid on portfolio.html
     const grid = document.querySelector('#publicPortfolioGrid') ||
                  document.querySelector('section.section .grid.md\\:grid-cols-3');
     if (!grid) return;
 
-    grid.innerHTML = portfolio.map(item => `
+    grid.innerHTML = activePortfolio.map(item => `
       <article class="card overflow-hidden">
         <img
           src="${escapeHtml(item.imageUrl || 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80')}"
@@ -123,13 +132,13 @@
 
   function syncBlog(blog) {
     if (!blog || !blog.length) return;
+    const activeBlog = blog.filter(b => b.status !== 'draft');
 
-    // Target blog grid on blog.html
     const grid = document.querySelector('#publicBlogGrid') ||
                  document.querySelector('.grid.md\\:grid-cols-2.xl\\:grid-cols-3');
     if (!grid) return;
 
-    grid.innerHTML = blog.map(b => `
+    grid.innerHTML = activeBlog.map(b => `
       <article class="card overflow-hidden" data-blog data-filter-item="blog">
         <img
           src="${escapeHtml(b.imageUrl || 'https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=800&q=80')}"
@@ -150,6 +159,47 @@
     `).join('');
   }
 
+  // Intercept Contact Form Submissions and route to Admin Inquiries
+  function attachContactFormListener() {
+    const contactForm = document.querySelector('#contactForm') || document.querySelector('form[action*="formspree"]') || document.querySelector('#contact-form form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = contactForm.querySelector('[name="name"]')?.value || contactForm.querySelector('#name')?.value || 'Guest Visitor';
+      const email = contactForm.querySelector('[name="email"]')?.value || contactForm.querySelector('#email')?.value || 'N/A';
+      const phone = contactForm.querySelector('[name="phone"]')?.value || contactForm.querySelector('#phone')?.value || 'N/A';
+      const service = contactForm.querySelector('[name="service"]')?.value || contactForm.querySelector('#service')?.value || 'General Inquiry';
+      const message = contactForm.querySelector('[name="message"]')?.value || contactForm.querySelector('#message')?.value || 'Enquiry submitted via contact page.';
+
+      const data = getStoredData() || {};
+      if (!data.inquiries) data.inquiries = [];
+
+      const newInquiry = {
+        id: 'inq-' + Date.now(),
+        name,
+        email,
+        phone,
+        service,
+        message,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+        status: 'new'
+      };
+
+      data.inquiries.unshift(newInquiry);
+      saveStoredData(data);
+
+      // Show success message on form
+      const msg = document.querySelector('#formMsg');
+      if (msg) msg.classList.remove('hidden');
+
+      // Visual feedback
+      alert(`Thank you ${name}! Your inquiry has been received and routed to the Admin Inbox.`);
+      contactForm.reset();
+    });
+  }
+
   function runSync() {
     const data = getStoredData();
     if (!data) return;
@@ -168,16 +218,16 @@
     if (path.includes('blog') || document.querySelector('#publicBlogGrid') || (document.title && document.title.includes('Blog'))) {
       syncBlog(data.blog);
     }
+
+    attachContactFormListener();
   }
 
-  // Execute on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runSync);
   } else {
     runSync();
   }
 
-  // Listen for real-time changes across tabs
   window.addEventListener('storage', function (e) {
     if (e.key === STORAGE_KEY) {
       runSync();

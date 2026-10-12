@@ -6,7 +6,7 @@
     <title>Admin Panel | Aken Tech Solution</title>
     <meta
       name="description"
-      content="Aken Tech Solution — Responsive Admin Control Panel for Content Management and Static Export."
+      content="Aken Tech Solution — Responsive Admin Control Panel with Media Manager, File Remove, Inquiries, and Live Sync."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,11 +25,11 @@
             <div class="brand-icon">A</div>
             <div class="brand-text">
               <span class="brand-title">AKEN TECH</span>
-              <span class="brand-subtitle">ADMIN PORTAL</span>
+              <span class="brand-subtitle">CONTROL PANEL</span>
             </div>
           </a>
           <button class="sidebar-close-btn" id="closeSidebarBtn" aria-label="Close Sidebar">
-            <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
@@ -77,7 +77,32 @@
             <span class="nav-badge" id="badgeBlog">4</span>
           </a>
 
-          <div class="nav-section-label">Preview & Publishing</div>
+          <div class="nav-section-label">Media & Leads</div>
+          <a class="nav-item" data-view="media" href="#media">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Media & Files</span>
+            <span class="nav-badge" id="badgeMedia">4</span>
+          </a>
+
+          <a class="nav-item" data-view="inquiries" href="#inquiries">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span>Contact Inquiries</span>
+            <span class="nav-badge" id="badgeInquiries" style="background:#ef4444; color:#fff;">2</span>
+          </a>
+
+          <div class="nav-section-label">System & Preview</div>
+          <a class="nav-item" data-view="settings" href="#settings">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>Company Settings</span>
+          </a>
+
           <a class="nav-item" data-view="preview" href="#preview">
             <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -90,7 +115,7 @@
             <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
             </svg>
-            <span>Export & Deployment</span>
+            <span>Backup & Export</span>
           </a>
         </nav>
 
@@ -99,16 +124,15 @@
             <div class="user-avatar">RT</div>
             <div class="user-meta">
               <div class="user-name">Roshan Tiwari</div>
-              <div class="user-role">Administrator (Demo)</div>
+              <div class="user-role">Administrator</div>
             </div>
             <button
               class="btn-sidebar-logout"
-              title="Demo Mode: Client-side storage"
-              onclick="window.adminApp.switchView('export')"
+              title="Manual Sync / Save"
+              onclick="window.adminApp.manualSaveAndSync()"
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
             </button>
           </div>
@@ -140,26 +164,27 @@
               <input
                 type="text"
                 id="globalSearchInput"
-                placeholder="Search services, products, blog..."
+                placeholder="Search anything..."
                 aria-label="Global search"
               />
             </div>
 
-            <div class="status-indicator-pill" title="Changes are stored in your browser's localStorage">
+            <div class="status-indicator-pill" title="Changes auto-sync to website in real time">
               <span class="status-dot"></span>
-              <span>Local Storage Mode</span>
+              <span id="saveStatusIndicator">Synced with Website</span>
             </div>
 
-            <a href="../index.html" target="_blank" class="header-action-btn btn-visit-site" title="Open public website in a new tab">
-              <span>Public Website ↗</span>
-            </a>
-
-            <button class="btn btn-primary btn-sm" onclick="window.adminApp.exportAllJson()" title="Download entire site JSON">
+            <!-- PROMINENT SAVE & SYNC BUTTON -->
+            <button class="btn btn-primary btn-sm" onclick="window.adminApp.manualSaveAndSync()" title="Save all changes and push to website">
               <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
               </svg>
-              <span>Export JSON</span>
+              <span>Save & Sync</span>
             </button>
+
+            <a href="../index.html" target="_blank" class="header-action-btn btn-visit-site" title="Open live public website">
+              <span>View Website ↗</span>
+            </a>
           </div>
         </header>
 
@@ -167,37 +192,32 @@
         <div class="admin-content">
           <!-- VIEW 1: DASHBOARD -->
           <section class="view-panel active" id="view-dashboard">
-            <!-- Disclaimer Banner -->
             <div class="disclaimer-banner">
               <div class="disclaimer-icon">
                 <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
               <div class="disclaimer-content">
-                <h4>Static Content Control Center & Local Storage Architecture</h4>
+                <h4>Real-Time Website Sync Active</h4>
                 <p>
-                  This admin panel runs entirely in the browser with <strong>zero external databases or backend APIs</strong>. All content changes are safely persisted in your browser's <code>localStorage</code>. To update the live public website, export your content or copy HTML snippets from the <strong>Export & Deployment Hub</strong>, update the relevant HTML files, and push to GitHub.
+                  Any updates made here (Services, Products, Portfolio, Blog, Images) are <strong>automatically reflected live on the public website</strong> in your browser. Use the <strong>Save & Sync</strong> button anytime to manually confirm sync.
                 </p>
                 <div class="disclaimer-tags">
-                  <span class="disclaimer-pill">✓ No Database Required</span>
-                  <span class="disclaimer-pill">✓ Instant Local Editing</span>
-                  <span class="disclaimer-pill">✓ Full JSON Backup & Export</span>
-                  <span class="disclaimer-pill">✓ Compatible with GitHub Pages</span>
+                  <span class="disclaimer-pill">✓ Instant Live Updates</span>
+                  <span class="disclaimer-pill">✓ File & Image Upload/Remove</span>
+                  <span class="disclaimer-pill">✓ Bulk Deletion</span>
+                  <span class="disclaimer-pill">✓ Customer Lead Inbox</span>
                 </div>
               </div>
             </div>
 
-            <!-- Stats Grid -->
             <div class="stats-grid">
               <div class="stat-card" onclick="window.adminApp.switchView('services')">
                 <div>
-                  <div class="stat-info-title">Active Services</div>
+                  <div class="stat-info-title">Services</div>
                   <div class="stat-info-count" id="statServicesCount">6</div>
-                  <div class="stat-info-meta">
-                    <span class="stat-badge-trend">Live on site</span>
-                    <span>• Marketing & Tech</span>
-                  </div>
+                  <div class="stat-info-meta"><span>Live offerings</span></div>
                 </div>
                 <div class="stat-icon-wrap stat-icon-blue">
                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,12 +228,9 @@
 
               <div class="stat-card" onclick="window.adminApp.switchView('products')">
                 <div>
-                  <div class="stat-info-title">Digital Products</div>
+                  <div class="stat-info-title">Products</div>
                   <div class="stat-info-count" id="statProductsCount">4</div>
-                  <div class="stat-info-meta">
-                    <span class="stat-badge-trend">Featured</span>
-                    <span>• Turnkey software</span>
-                  </div>
+                  <div class="stat-info-meta"><span>Turnkey software</span></div>
                 </div>
                 <div class="stat-icon-wrap stat-icon-emerald">
                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,12 +241,9 @@
 
               <div class="stat-card" onclick="window.adminApp.switchView('portfolio')">
                 <div>
-                  <div class="stat-info-title">Portfolio Projects</div>
+                  <div class="stat-info-title">Portfolio</div>
                   <div class="stat-info-count" id="statPortfolioCount">4</div>
-                  <div class="stat-info-meta">
-                    <span class="stat-badge-trend">Case studies</span>
-                    <span>• Verified impact</span>
-                  </div>
+                  <div class="stat-info-meta"><span>Case studies</span></div>
                 </div>
                 <div class="stat-icon-wrap stat-icon-amber">
                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,10 +256,7 @@
                 <div>
                   <div class="stat-info-title">Blog Articles</div>
                   <div class="stat-info-count" id="statBlogCount">4</div>
-                  <div class="stat-info-meta">
-                    <span class="stat-badge-trend">Published</span>
-                    <span>• Tech & Strategy</span>
-                  </div>
+                  <div class="stat-info-meta"><span>Published posts</span></div>
                 </div>
                 <div class="stat-icon-wrap stat-icon-purple">
                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,51 +266,30 @@
               </div>
             </div>
 
-            <!-- Quick Action Shortcuts -->
             <div class="quick-actions-bar">
-              <button class="btn btn-primary" onclick="window.adminApp.openServiceModal()">
-                + Add Service
-              </button>
-              <button class="btn btn-secondary" onclick="window.adminApp.openProductModal()">
-                + Add Product
-              </button>
-              <button class="btn btn-secondary" onclick="window.adminApp.openPortfolioModal()">
-                + Add Project
-              </button>
-              <button class="btn btn-secondary" onclick="window.adminApp.openBlogModal()">
-                + Add Article
-              </button>
-              <button class="btn btn-secondary" onclick="window.adminApp.switchView('preview')">
-                Live Preview
-              </button>
-              <button class="btn btn-secondary" onclick="window.adminApp.switchView('export')">
-                Export & Deploy Guide
-              </button>
+              <button class="btn btn-primary" onclick="window.adminApp.openServiceModal()">+ Add Service</button>
+              <button class="btn btn-secondary" onclick="window.adminApp.openProductModal()">+ Add Product</button>
+              <button class="btn btn-secondary" onclick="window.adminApp.openPortfolioModal()">+ Add Project</button>
+              <button class="btn btn-secondary" onclick="window.adminApp.openBlogModal()">+ Add Article</button>
+              <button class="btn btn-secondary" onclick="window.adminApp.triggerMediaUpload()">+ Upload Image</button>
+              <button class="btn btn-secondary" onclick="window.adminApp.switchView('inquiries')">View Leads Inbox</button>
             </div>
 
-            <!-- Dashboard Split Layout -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
-              <!-- Left: Content Distribution -->
               <div class="admin-card">
                 <div class="card-header">
-                  <h3 class="card-title">Website Sections Directory</h3>
-                  <span class="badge badge-blue">Ready</span>
+                  <h3 class="card-title">Website Directory</h3>
+                  <span class="badge badge-emerald">Live Linked</span>
                 </div>
                 <div class="card-body">
-                  <p style="font-size:0.82rem; color:#64748b; margin-bottom:1rem;">
-                    Quick overview of managed pages and content models. Click any row to manage items:
-                  </p>
                   <div id="dashboardBreakdown"></div>
                 </div>
               </div>
 
-              <!-- Right: Activity Feed -->
               <div class="admin-card">
                 <div class="card-header">
-                  <h3 class="card-title">Recent Admin Activity</h3>
-                  <button class="btn btn-secondary btn-sm" onclick="window.adminApp.resetToSeeds()">
-                    Reset Seeds
-                  </button>
+                  <h3 class="card-title">Recent Activity</h3>
+                  <button class="btn btn-secondary btn-sm" onclick="window.adminApp.resetToSeeds()">Reset Seeds</button>
                 </div>
                 <div class="card-body">
                   <div id="dashboardActivities"></div>
@@ -313,22 +303,29 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Services Management</h2>
-                <p class="panel-subtitle">Manage service offerings shown across <code>services.html</code> and the homepage.</p>
+                <p class="panel-subtitle">Manage service offerings shown across <code>services.html</code>.</p>
               </div>
               <div class="panel-actions">
-                <button class="btn btn-primary" onclick="window.adminApp.openServiceModal()">
-                  + Add New Service
-                </button>
+                <button class="btn btn-primary" onclick="window.adminApp.openServiceModal()">+ Add New Service</button>
+              </div>
+            </div>
+
+            <!-- Bulk Actions Bar -->
+            <div class="bulk-actions-bar" id="servicesBulkBar">
+              <div class="bulk-actions-info">
+                <span>Selected: <strong class="bulk-selected-count">0</strong> item(s)</span>
+              </div>
+              <div class="bulk-actions-buttons">
+                <button class="btn btn-danger btn-sm" onclick="window.adminApp.bulkDelete('services')">Delete Selected</button>
+                <button class="btn btn-secondary btn-sm" onclick="window.adminApp.clearSelection('services')">Deselect All</button>
               </div>
             </div>
 
             <div class="filter-bar">
               <div class="filter-controls">
                 <div class="search-input-wrap">
-                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                  <input type="text" id="servicesSearch" placeholder="Filter by title or keyword..." />
+                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <input type="text" id="servicesSearch" placeholder="Filter by title..." />
                 </div>
                 <select class="select-filter" id="servicesCategoryFilter">
                   <option value="all">All Categories</option>
@@ -350,21 +347,28 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Products Management</h2>
-                <p class="panel-subtitle">Manage packaged digital products, turnkey systems, and CRM solutions on <code>products.html</code>.</p>
+                <p class="panel-subtitle">Manage packaged software on <code>products.html</code>. Upload or remove product images anytime.</p>
               </div>
               <div class="panel-actions">
-                <button class="btn btn-primary" onclick="window.adminApp.openProductModal()">
-                  + Add New Product
-                </button>
+                <button class="btn btn-primary" onclick="window.adminApp.openProductModal()">+ Add New Product</button>
+              </div>
+            </div>
+
+            <!-- Bulk Actions Bar -->
+            <div class="bulk-actions-bar" id="productsBulkBar">
+              <div class="bulk-actions-info">
+                <span>Selected: <strong class="bulk-selected-count">0</strong> item(s)</span>
+              </div>
+              <div class="bulk-actions-buttons">
+                <button class="btn btn-danger btn-sm" onclick="window.adminApp.bulkDelete('products')">Delete Selected</button>
+                <button class="btn btn-secondary btn-sm" onclick="window.adminApp.clearSelection('products')">Deselect All</button>
               </div>
             </div>
 
             <div class="filter-bar">
               <div class="filter-controls">
                 <div class="search-input-wrap">
-                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
+                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                   <input type="text" id="productsSearch" placeholder="Filter products..." />
                 </div>
                 <select class="select-filter" id="productsCategoryFilter">
@@ -385,22 +389,29 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Portfolio Projects</h2>
-                <p class="panel-subtitle">Manage verified client case studies, impact metrics, and project showcases on <code>portfolio.html</code>.</p>
+                <p class="panel-subtitle">Manage client case studies on <code>portfolio.html</code>.</p>
               </div>
               <div class="panel-actions">
-                <button class="btn btn-primary" onclick="window.adminApp.openPortfolioModal()">
-                  + Add New Project
-                </button>
+                <button class="btn btn-primary" onclick="window.adminApp.openPortfolioModal()">+ Add New Project</button>
+              </div>
+            </div>
+
+            <!-- Bulk Actions Bar -->
+            <div class="bulk-actions-bar" id="portfolioBulkBar">
+              <div class="bulk-actions-info">
+                <span>Selected: <strong class="bulk-selected-count">0</strong> item(s)</span>
+              </div>
+              <div class="bulk-actions-buttons">
+                <button class="btn btn-danger btn-sm" onclick="window.adminApp.bulkDelete('portfolio')">Delete Selected</button>
+                <button class="btn btn-secondary btn-sm" onclick="window.adminApp.clearSelection('portfolio')">Deselect All</button>
               </div>
             </div>
 
             <div class="filter-bar">
               <div class="filter-controls">
                 <div class="search-input-wrap">
-                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                  <input type="text" id="portfolioSearch" placeholder="Filter projects or clients..." />
+                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <input type="text" id="portfolioSearch" placeholder="Filter projects..." />
                 </div>
                 <select class="select-filter" id="portfolioIndustryFilter">
                   <option value="all">All Industries</option>
@@ -420,22 +431,29 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Blog Articles</h2>
-                <p class="panel-subtitle">Publish and manage technology insights, growth guides, and articles on <code>blog.html</code>.</p>
+                <p class="panel-subtitle">Publish articles on <code>blog.html</code>.</p>
               </div>
               <div class="panel-actions">
-                <button class="btn btn-primary" onclick="window.adminApp.openBlogModal()">
-                  + Add New Article
-                </button>
+                <button class="btn btn-primary" onclick="window.adminApp.openBlogModal()">+ Add New Article</button>
+              </div>
+            </div>
+
+            <!-- Bulk Actions Bar -->
+            <div class="bulk-actions-bar" id="blogBulkBar">
+              <div class="bulk-actions-info">
+                <span>Selected: <strong class="bulk-selected-count">0</strong> item(s)</span>
+              </div>
+              <div class="bulk-actions-buttons">
+                <button class="btn btn-danger btn-sm" onclick="window.adminApp.bulkDelete('blog')">Delete Selected</button>
+                <button class="btn btn-secondary btn-sm" onclick="window.adminApp.clearSelection('blog')">Deselect All</button>
               </div>
             </div>
 
             <div class="filter-bar">
               <div class="filter-controls">
                 <div class="search-input-wrap">
-                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                  <input type="text" id="blogSearchInput" placeholder="Filter articles by title or topic..." />
+                  <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <input type="text" id="blogSearchInput" placeholder="Filter articles..." />
                 </div>
                 <select class="select-filter" id="blogCategoryFilter">
                   <option value="all">All Categories</option>
@@ -450,17 +468,89 @@
             <div id="blogList"></div>
           </section>
 
-          <!-- VIEW 6: WEBSITE PREVIEW -->
+          <!-- VIEW 6: MEDIA & FILE LIBRARY -->
+          <section class="view-panel" id="view-media">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Media & File Library</h2>
+                <p class="panel-subtitle">Upload files from your computer, copy image links, or delete unused media files.</p>
+              </div>
+              <div class="panel-actions">
+                <button class="btn btn-primary" onclick="window.adminApp.triggerMediaUpload()">+ Upload File From Computer</button>
+                <input type="file" id="mediaDirectUploadInput" accept="image/*" style="display:none;" />
+              </div>
+            </div>
+
+            <div id="mediaList"></div>
+          </section>
+
+          <!-- VIEW 7: CONTACT INQUIRIES INBOX -->
+          <section class="view-panel" id="view-inquiries">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Contact Inquiries & Leads</h2>
+                <p class="panel-subtitle">Customer messages submitted from the public contact forms.</p>
+              </div>
+            </div>
+
+            <div id="inquiriesList"></div>
+          </section>
+
+          <!-- VIEW 8: COMPANY & WEBSITE SETTINGS -->
+          <section class="view-panel" id="view-settings">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Company & Website Settings</h2>
+                <p class="panel-subtitle">Configure business contact details that appear across the website headers and footers.</p>
+              </div>
+            </div>
+
+            <form id="settingsForm">
+              <div class="settings-section-card">
+                <h3 class="settings-section-title">Contact Details</h3>
+                <p class="settings-section-desc">Updated numbers and emails will sync with your public contact page.</p>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="settingsPhone">Phone Number</label>
+                    <input type="text" class="form-control" id="settingsPhone" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="settingsWhatsapp">WhatsApp Number</label>
+                    <input type="text" class="form-control" id="settingsWhatsapp" placeholder="919876543210" />
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="settingsEmail">Email Address</label>
+                    <input type="email" class="form-control" id="settingsEmail" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="settingsAddress">Office Address</label>
+                    <input type="text" class="form-control" id="settingsAddress" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="settingsTagline">Website Header Tagline</label>
+                  <input type="text" class="form-control" id="settingsTagline" />
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:0.5rem;">Save Settings</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- VIEW 9: WEBSITE PREVIEW -->
           <section class="view-panel" id="view-preview">
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Live Website Preview</h2>
-                <p class="panel-subtitle">Inspect the existing public pages of Aken Tech Solution directly inside the admin panel.</p>
+                <p class="panel-subtitle">Test and inspect your public pages live.</p>
               </div>
               <div class="panel-actions">
-                <a href="../index.html" target="_blank" class="btn btn-secondary">
-                  Open Home in New Tab ↗
-                </a>
+                <a href="../index.html" target="_blank" class="btn btn-secondary">Open in New Tab ↗</a>
               </div>
             </div>
 
@@ -477,153 +567,58 @@
                 </div>
 
                 <div class="device-switcher">
-                  <button class="device-btn active" data-device="desktop" onclick="window.adminApp.setPreviewDevice('desktop')">
-                    Desktop
-                  </button>
-                  <button class="device-btn" data-device="tablet" onclick="window.adminApp.setPreviewDevice('tablet')">
-                    Tablet (768px)
-                  </button>
-                  <button class="device-btn" data-device="mobile" onclick="window.adminApp.setPreviewDevice('mobile')">
-                    Mobile (375px)
-                  </button>
+                  <button class="device-btn active" data-device="desktop" onclick="window.adminApp.setPreviewDevice('desktop')">Desktop</button>
+                  <button class="device-btn" data-device="tablet" onclick="window.adminApp.setPreviewDevice('tablet')">Tablet (768px)</button>
+                  <button class="device-btn" data-device="mobile" onclick="window.adminApp.setPreviewDevice('mobile')">Mobile (375px)</button>
                 </div>
               </div>
 
               <div class="iframe-wrapper">
-                <iframe id="previewIframe" class="preview-frame" src="../index.html" title="Aken Tech Solution Live Website Preview"></iframe>
+                <iframe id="previewIframe" class="preview-frame" src="../index.html" title="Aken Tech Solution Preview"></iframe>
               </div>
             </div>
           </section>
 
-          <!-- VIEW 7: EXPORT & DEPLOYMENT HUB -->
+          <!-- VIEW 10: EXPORT & BACKUP HUB -->
           <section class="view-panel" id="view-export">
             <div class="panel-header">
               <div>
-                <h2 class="panel-title">Export & Static Deployment Hub</h2>
-                <p class="panel-subtitle">Export your content, generate drop-in HTML code, and follow the deployment workflow for GitHub.</p>
+                <h2 class="panel-title">Backup & Export Hub</h2>
+                <p class="panel-subtitle">Export all data as JSON or restore from a backup file.</p>
               </div>
               <div class="panel-actions">
-                <button class="btn btn-primary" onclick="window.adminApp.exportAllJson()">
-                  Download Full JSON Backup
-                </button>
+                <button class="btn btn-primary" onclick="window.adminApp.exportAllJson()">Download Full JSON Backup</button>
               </div>
             </div>
 
-            <!-- Export Cards Grid -->
             <div class="export-grid">
               <div class="export-card">
                 <div class="export-icon-wrap">
-                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                  </svg>
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </div>
-                <h3>Complete Content Backup (JSON)</h3>
-                <p>Download a single JSON file containing all Services, Products, Portfolio, and Blog entries saved in your browser.</p>
-                <div style="font-size:0.75rem; color:#64748b; margin-bottom:1rem;" id="exportMetaSummary">
-                  Contains all active items
-                </div>
-                <button class="btn btn-primary" onclick="window.adminApp.exportAllJson()">
-                  Export Complete JSON
-                </button>
+                <h3>Complete Content Backup</h3>
+                <p>Download a single JSON file with all Services, Products, Portfolio, Blog articles, Media files, and Settings.</p>
+                <div style="font-size:0.75rem; color:#64748b; margin-bottom:1rem;" id="exportMetaSummary">Full database export</div>
+                <button class="btn btn-primary" onclick="window.adminApp.exportAllJson()">Export Complete JSON</button>
               </div>
 
               <div class="export-card">
                 <div class="export-icon-wrap">
-                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                  </svg>
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                 </div>
                 <h3>Restore / Import JSON</h3>
-                <p>Upload a previously exported JSON backup to instantly restore or synchronize content across browsers and devices.</p>
-                <button class="btn btn-secondary" onclick="window.adminApp.triggerImportJson()" style="margin-top:auto;">
-                  Choose JSON File to Import
-                </button>
+                <p>Upload any previously exported JSON file to restore your entire content catalog instantly.</p>
+                <button class="btn btn-secondary" onclick="window.adminApp.triggerImportJson()" style="margin-top:auto;">Choose JSON File</button>
                 <input type="file" id="importJsonInput" accept=".json" style="display:none;" />
               </div>
 
               <div class="export-card">
                 <div class="export-icon-wrap" style="background:#fee2e2; color:#ef4444;">
-                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                  </svg>
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                 </div>
-                <h3>Reset to Website Defaults</h3>
-                <p>Restore the default sample data matching the original public files of Aken Tech Solution.</p>
-                <button class="btn btn-secondary" onclick="window.adminApp.resetToSeeds()" style="margin-top:auto; color:#ef4444;">
-                  Reset to Default Seed Data
-                </button>
-              </div>
-            </div>
-
-            <!-- Deployment Workflow Guide -->
-            <div class="admin-card">
-              <div class="card-header">
-                <h3 class="card-title">Static Deployment Workflow for GitHub & Hosting</h3>
-                <span class="badge badge-emerald">Step-by-Step Guide</span>
-              </div>
-              <div class="card-body">
-                <p style="font-size:0.86rem; color:#475569; margin-bottom:1.5rem;">
-                  Because this site operates without a database or backend server, updates are deployed through clean, static Git version control. Follow these exact steps to publish content edits:
-                </p>
-
-                <div class="guide-step-card">
-                  <div class="guide-step-header">
-                    <div class="step-number">1</div>
-                    <div class="guide-step-title">Generate HTML or Export JSON</div>
-                  </div>
-                  <p style="font-size:0.82rem; color:#64748b;">
-                    In any management tab (Services, Products, Portfolio, or Blog), click the <strong>&lt;/&gt; (Generate HTML)</strong> button next to any item. Copy the pre-formatted HTML card snippet.
-                  </p>
-                </div>
-
-                <div class="guide-step-card">
-                  <div class="guide-step-header">
-                    <div class="step-number">2</div>
-                    <div class="guide-step-title">Apply to Website HTML Files</div>
-                  </div>
-                  <p style="font-size:0.82rem; color:#64748b;">
-                    Open the corresponding HTML file in your project:
-                  </p>
-                  <ul style="font-size:0.8rem; color:#475569; margin:0.5rem 0 0.5rem 1.25rem;">
-                    <li><strong>Services:</strong> Paste into <code>services.html</code> inside <code>&lt;div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"&gt;</code></li>
-                    <li><strong>Products:</strong> Paste into <code>products.html</code> inside <code>&lt;div class="grid md:grid-cols-3 gap-6 mt-8"&gt;</code></li>
-                    <li><strong>Portfolio:</strong> Paste into <code>portfolio.html</code> inside <code>&lt;div class="grid md:grid-cols-3 gap-6 mt-8"&gt;</code></li>
-                    <li><strong>Blog:</strong> Paste into <code>blog.html</code> inside <code>&lt;div class="grid md:grid-cols-2 gap-6 mt-8"&gt;</code></li>
-                  </ul>
-                </div>
-
-                <div class="guide-step-card">
-                  <div class="guide-step-header">
-                    <div class="step-number">3</div>
-                    <div class="guide-step-title">Commit & Push to GitHub</div>
-                  </div>
-                  <p style="font-size:0.82rem; color:#64748b;">
-                    Run these exact terminal commands from your project root:
-                  </p>
-                  <div class="code-block">
-                    <code>git add .<br/>git commit -m "Update website content from admin panel"<br/>git push origin main</code>
-                  </div>
-                </div>
-
-                <div class="guide-step-card">
-                  <div class="guide-step-header">
-                    <div class="step-number">4</div>
-                    <div class="guide-step-title">Automatic Live Deployment</div>
-                  </div>
-                  <p style="font-size:0.82rem; color:#64748b;">
-                    If using <strong>GitHub Pages</strong>, <strong>Vercel</strong>, or <strong>Cloudflare Pages</strong>, your live website will rebuild and deploy automatically within 30–60 seconds.
-                  </p>
-                </div>
-
-                <!-- Limitations Notice -->
-                <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:1rem 1.25rem; margin-top:1.5rem;">
-                  <h4 style="font-size:0.88rem; font-weight:700; color:#92400e; margin-bottom:0.25rem;">
-                    Why is this workflow used instead of automatic background publishing?
-                  </h4>
-                  <p style="font-size:0.8rem; color:#78350f; line-height:1.45;">
-                    Operating without a backend server ensures 100% free hosting, zero database maintenance, maximum speed, and immunity to server-side attacks. Changes saved in <code>localStorage</code> remain in your browser until exported and committed to the static repository.
-                  </p>
-                </div>
+                <h3>Reset to Defaults</h3>
+                <p>Reset to original website sample data.</p>
+                <button class="btn btn-secondary" onclick="window.adminApp.resetToSeeds()" style="margin-top:auto; color:#ef4444;">Reset Seeds</button>
               </div>
             </div>
           </section>
@@ -647,7 +642,6 @@
             <div class="form-group">
               <label class="form-label" for="serviceTitle">Service Title <span class="required">*</span></label>
               <input type="text" class="form-control" id="serviceTitle" placeholder="e.g. Performance Marketing" required />
-              <div class="form-error-msg">Title is required.</div>
             </div>
 
             <div class="form-row-2">
@@ -663,25 +657,23 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label" for="serviceBadge">Badge / Highlight</label>
-                <input type="text" class="form-control" id="serviceBadge" placeholder="e.g. Popular, High Demand" />
+                <label class="form-label" for="serviceBadge">Badge</label>
+                <input type="text" class="form-control" id="serviceBadge" placeholder="e.g. High Demand" />
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="serviceDesc">Short Description <span class="required">*</span></label>
-              <textarea class="form-control" id="serviceDesc" rows="3" placeholder="Brief description of service value..." required></textarea>
-              <div class="form-error-msg">Description is required.</div>
+              <label class="form-label" for="serviceDesc">Description <span class="required">*</span></label>
+              <textarea class="form-control" id="serviceDesc" rows="3" required></textarea>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="serviceFeatures">Key Features / Bullets (One per line)</label>
-              <textarea class="form-control" id="serviceFeatures" rows="3" placeholder="Meta Ads Scaling&#10;Google Search Ads&#10;Lead Conversion Tracking"></textarea>
-              <div class="form-hint">Enter each key benefit on a new line.</div>
+              <label class="form-label" for="serviceFeatures">Key Features (One per line)</label>
+              <textarea class="form-control" id="serviceFeatures" rows="3"></textarea>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="serviceCta">CTA Button Text</label>
+              <label class="form-label" for="serviceCta">CTA Text</label>
               <input type="text" class="form-control" id="serviceCta" value="Inquire Now →" />
             </div>
           </div>
@@ -693,7 +685,7 @@
       </div>
     </div>
 
-    <!-- Modal: Product Form -->
+    <!-- Modal: Product Form (with File Upload + Remove File) -->
     <div class="modal-backdrop" id="productModal">
       <div class="modal-card">
         <div class="modal-header">
@@ -704,8 +696,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label class="form-label" for="productTitle">Product Name <span class="required">*</span></label>
-              <input type="text" class="form-control" id="productTitle" placeholder="e.g. NGO Management System" required />
-              <div class="form-error-msg">Product name is required.</div>
+              <input type="text" class="form-control" id="productTitle" required />
             </div>
 
             <div class="form-row-2">
@@ -719,31 +710,31 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label" for="productPriceBadge">Availability / Price Badge</label>
-                <input type="text" class="form-control" id="productPriceBadge" placeholder="e.g. Ready to Deploy" />
+                <label class="form-label" for="productPriceBadge">Badge</label>
+                <input type="text" class="form-control" id="productPriceBadge" placeholder="Ready to Deploy" />
               </div>
             </div>
 
-            <div class="form-row-2">
-              <div class="form-group">
-                <label class="form-label" for="productTag">Tag</label>
-                <input type="text" class="form-control" id="productTag" placeholder="e.g. Non-Profit Tech" />
+            <!-- FILE UPLOAD & REMOVE SECTION -->
+            <div class="form-group">
+              <label class="form-label">Product Image (Upload File or Enter URL)</label>
+              <div class="file-upload-box" onclick="document.getElementById('productFileInput').click()">
+                <div style="font-size:0.85rem; font-weight:600; color:#126fe8;">📁 Click here to choose an image from your computer</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:0.25rem;">Supports PNG, JPG, WebP</div>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="productImage">Cover Image URL</label>
-                <input type="text" class="form-control" id="productImage" placeholder="https://images.unsplash.com/..." />
-              </div>
+              <input type="file" id="productFileInput" accept="image/*" style="display:none;" />
+              <input type="text" class="form-control" id="productImage" placeholder="Or paste image URL here..." style="margin-top:0.5rem;" />
+              <div id="productFilePreview" style="display:none;"></div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="productDesc">Short Description <span class="required">*</span></label>
-              <textarea class="form-control" id="productDesc" rows="3" placeholder="Description of the digital product..." required></textarea>
-              <div class="form-error-msg">Description is required.</div>
+              <label class="form-label" for="productDesc">Description <span class="required">*</span></label>
+              <textarea class="form-control" id="productDesc" rows="3" required></textarea>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="productFeatures">Key Features (One per line)</label>
-              <textarea class="form-control" id="productFeatures" rows="3" placeholder="Easy setup&#10;Customizable&#10;Scalable & secure"></textarea>
+              <textarea class="form-control" id="productFeatures" rows="3"></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -754,7 +745,7 @@
       </div>
     </div>
 
-    <!-- Modal: Portfolio Form -->
+    <!-- Modal: Portfolio Form (with File Upload + Remove File) -->
     <div class="modal-backdrop" id="portfolioModal">
       <div class="modal-card">
         <div class="modal-header">
@@ -765,15 +756,13 @@
           <div class="modal-body">
             <div class="form-group">
               <label class="form-label" for="portfolioTitle">Project Title <span class="required">*</span></label>
-              <input type="text" class="form-control" id="portfolioTitle" placeholder="e.g. NGO Website & Management System" required />
-              <div class="form-error-msg">Project title is required.</div>
+              <input type="text" class="form-control" id="portfolioTitle" required />
             </div>
 
             <div class="form-row-2">
               <div class="form-group">
                 <label class="form-label" for="portfolioClient">Client Name <span class="required">*</span></label>
-                <input type="text" class="form-control" id="portfolioClient" placeholder="e.g. Smile Foundation" required />
-                <div class="form-error-msg">Client is required.</div>
+                <input type="text" class="form-control" id="portfolioClient" required />
               </div>
               <div class="form-group">
                 <label class="form-label" for="portfolioIndustry">Industry</label>
@@ -786,26 +775,31 @@
               </div>
             </div>
 
+            <!-- FILE UPLOAD & REMOVE SECTION -->
+            <div class="form-group">
+              <label class="form-label">Project Cover Image</label>
+              <div class="file-upload-box" onclick="document.getElementById('portfolioFileInput').click()">
+                <div style="font-size:0.85rem; font-weight:600; color:#126fe8;">📁 Click here to choose an image from your computer</div>
+              </div>
+              <input type="file" id="portfolioFileInput" accept="image/*" style="display:none;" />
+              <input type="text" class="form-control" id="portfolioImage" placeholder="Or paste image URL here..." style="margin-top:0.5rem;" />
+              <div id="portfolioFilePreview" style="display:none;"></div>
+            </div>
+
             <div class="form-row-2">
               <div class="form-group">
-                <label class="form-label" for="portfolioMetrics">Results / Key Metric</label>
-                <input type="text" class="form-control" id="portfolioMetrics" placeholder="e.g. 10k+ Donors Managed" />
+                <label class="form-label" for="portfolioMetrics">Results Metric</label>
+                <input type="text" class="form-control" id="portfolioMetrics" placeholder="₹18L+ Online Donations" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="portfolioTags">Tags (Comma-separated)</label>
-                <input type="text" class="form-control" id="portfolioTags" placeholder="Web Design, CRM, Razorpay" />
+                <input type="text" class="form-control" id="portfolioTags" placeholder="Web Design, CRM" />
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="portfolioImage">Project Image URL</label>
-              <input type="text" class="form-control" id="portfolioImage" placeholder="https://images.unsplash.com/..." />
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="portfolioDesc">Project Description <span class="required">*</span></label>
-              <textarea class="form-control" id="portfolioDesc" rows="3" placeholder="Summary of problem, solution, and results..." required></textarea>
-              <div class="form-error-msg">Description is required.</div>
+              <label class="form-label" for="portfolioDesc">Description <span class="required">*</span></label>
+              <textarea class="form-control" id="portfolioDesc" rows="3" required></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -816,7 +810,7 @@
       </div>
     </div>
 
-    <!-- Modal: Blog Form -->
+    <!-- Modal: Blog Form (with File Upload + Remove File) -->
     <div class="modal-backdrop" id="blogModal">
       <div class="modal-card">
         <div class="modal-header">
@@ -827,8 +821,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label class="form-label" for="blogTitle">Article Title <span class="required">*</span></label>
-              <input type="text" class="form-control" id="blogTitle" placeholder="e.g. How Businesses Can Grow with WhatsApp Automation in 2025" required />
-              <div class="form-error-msg">Title is required.</div>
+              <input type="text" class="form-control" id="blogTitle" required />
             </div>
 
             <div class="form-row-2">
@@ -847,34 +840,28 @@
               </div>
             </div>
 
-            <div class="form-row-2">
-              <div class="form-group">
-                <label class="form-label" for="blogDate">Publish Date</label>
-                <input type="text" class="form-control" id="blogDate" placeholder="e.g. Jan 15, 2025" />
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="blogReadTime">Read Time</label>
-                <input type="text" class="form-control" id="blogReadTime" value="5 min read" />
-              </div>
-            </div>
-
+            <!-- FILE UPLOAD & REMOVE SECTION -->
             <div class="form-group">
-              <label class="form-label" for="blogImage">Featured Image URL</label>
-              <input type="text" class="form-control" id="blogImage" placeholder="https://images.unsplash.com/..." />
+              <label class="form-label">Article Cover Image</label>
+              <div class="file-upload-box" onclick="document.getElementById('blogFileInput').click()">
+                <div style="font-size:0.85rem; font-weight:600; color:#126fe8;">📁 Click here to choose an image from your computer</div>
+              </div>
+              <input type="file" id="blogFileInput" accept="image/*" style="display:none;" />
+              <input type="text" class="form-control" id="blogImage" placeholder="Or paste image URL here..." style="margin-top:0.5rem;" />
+              <div id="blogFilePreview" style="display:none;"></div>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="blogExcerpt">Summary / Excerpt <span class="required">*</span></label>
-              <textarea class="form-control" id="blogExcerpt" rows="2" placeholder="Brief summary of article..." required></textarea>
-              <div class="form-error-msg">Excerpt is required.</div>
+              <textarea class="form-control" id="blogExcerpt" rows="2" required></textarea>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="blogContent">Full Content / Notes</label>
-              <textarea class="form-control" id="blogContent" rows="4" placeholder="Body paragraphs..."></textarea>
+              <label class="form-label" for="blogContent">Full Content</label>
+              <textarea class="form-control" id="blogContent" rows="4"></textarea>
             </div>
 
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
               <input type="checkbox" id="blogFeatured" style="width:16px; height:16px; cursor:pointer;" />
               <label for="blogFeatured" style="font-size:0.85rem; font-weight:600; color:#0a1f44; cursor:pointer;">
                 Set as Featured Headline Article
@@ -905,28 +892,6 @@
       </div>
     </div>
 
-    <!-- Modal: HTML Snippet Generator -->
-    <div class="modal-backdrop" id="snippetModal">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h3 class="modal-title">HTML Code Snippet</h3>
-          <button class="modal-close-btn" onclick="window.adminApp.closeModal('snippetModal')">✕</button>
-        </div>
-        <div class="modal-body">
-          <p style="font-size:0.85rem; color:#475569; margin-bottom:0.75rem;">
-            Copy this snippet and paste it directly into <strong><code id="snippetTargetFileName">services.html</code></strong>:
-          </p>
-          <div class="code-block" style="max-height:260px;">
-            <pre><code id="snippetCodeContent"></code></pre>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" onclick="window.adminApp.closeModal('snippetModal')">Close</button>
-          <button type="button" class="btn btn-primary" onclick="window.adminApp.copySnippetCode()">Copy HTML Code</button>
-        </div>
-      </div>
-    </div>
-
     <!-- Modal: Confirm Delete -->
     <div class="modal-backdrop" id="deleteConfirmModal">
       <div class="modal-card" style="max-width:440px;">
@@ -939,7 +904,7 @@
             Are you sure you want to delete <strong id="deleteItemName">this item</strong>?
           </p>
           <p style="font-size:0.8rem; color:#64748b;">
-            This will remove it from your admin list in localStorage. Remember to update your static HTML files if this item was already deployed.
+            This item will be removed immediately.
           </p>
         </div>
         <div class="modal-footer">
