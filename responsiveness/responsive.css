@@ -1,0 +1,7 @@
+/* Responsive utility styles for Aken Tech Solution */
+@media (max-width: 640px) {
+  .container-x {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
